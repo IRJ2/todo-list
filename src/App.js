@@ -1,20 +1,19 @@
 import React, { Component, Fragment } from "react";
+import "./Bootstrap/bootstrap-5.1.3-dist/css/bootstrap.css";
+
 class App extends Component {
-    state = {task_arr:[]}
+    state = {task_arr:[]};
     add_task = () => {
       let new_task = document.getElementById("newtask").value
       var temp =  [...this.state.task_arr]
       temp.push(new_task);
       this.setState({task_arr: temp})
-    } 
-    display_task = () => {
-      document.getElementById()
     }
     delete_task = (id) => {
-      var temp = [...this.state.task_arr];
-      temp.filter(ele => ele !== id)
-      alert(temp)
-      this.setState({task_arr:temp})
+      let index = this.state.task_arr.indexOf(id)
+      this.state.task_arr.splice(index, 1)
+      this.setState({task_arr: this.state.task_arr})
+      console.log(this.state.task_arr)
     }
     render(){
       return (
@@ -25,10 +24,9 @@ class App extends Component {
           <ul>
             {this.state.task_arr.map(item => {
                 return(
-                  <li>{item}
-                  <button onclick={this.delete_task(item)}>Del</button>
+                  <li id="task">{item}
+                    <button onClick={() => this.delete_task(item)}>x</button>
                   </li>
-                  
                 )
               }
             )}
