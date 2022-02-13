@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import "./Bootstrap/bootstrap-5.1.3-dist/css/bootstrap.css";
+import "./App.css";
 
 class App extends Component {
     state = {task_arr:[]};
@@ -18,19 +18,24 @@ class App extends Component {
     render(){
       return (
         <Fragment>
-          <input type="text" placeholder="Enter new task" id="newtask"></input>
-          <button class="btn" onClick={this.add_task} >Add</button>
+
+        
+        <div class="container">
+          <h1> let's be TaskManiac!</h1>
+          <input  type="text" placeholder="Enter new task" id="newtask"></input>
+          <button class="btn" onClick={this.add_task} >+</button>
           <br></br>
           <ul>
             {this.state.task_arr.map(item => {
                 return(
-                  <li id="task">{item}
-                    <button onClick={() => this.delete_task(item)}>x</button>
+                  <li class="list-group-item list-group-item-action" id="task"><h6>{item}</h6>
+                    <button  class="done-but" data-bs-toggle="tooltip" title="Hooray!" onClick={() => this.delete_task(item)}>Done</button>
                   </li>
                 )
               }
             )}
           </ul>
+        </div>
         </Fragment>
       )
     }
